@@ -1,4 +1,4 @@
-package de.martin.frank.games.yatzee;
+package de.elite.games.yatzee;
 
 import de.frank.martin.games.boardgamelib.BasePlayer;
 
@@ -11,8 +11,10 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
     @Override
     public void performAiTurn() {
         YatzeeGame yatzeeGame = getBoardGame();
-        yatzeeGame.startPlayersTurn();
-        System.out.println("done");
+
+
+        System.out.println("done Ai turn");
         yatzeeGame.endPlayersTurn();
+        yatzeeGame.startPlayersTurn();
     }
 }
