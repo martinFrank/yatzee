@@ -1,6 +1,6 @@
 package de.elite.games.yatzee;
 
-public class Row {
+class Row {
 
     private final RowType type;
     private Roll roll;
@@ -14,12 +14,6 @@ public class Row {
             return 0;
         }
         return RollCalculator.getValue(type, roll);
-//        int value = RollCalculator.getValue(type, roll);
-//        if (value == 0){
-//            return "XX";
-//        }else{
-//            return Integer.toString(value);
-//        }
     }
 
     RowType getType() {
@@ -30,7 +24,7 @@ public class Row {
         this.roll = roll;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return roll == null;
     }
 }

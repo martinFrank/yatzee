@@ -20,8 +20,6 @@ public class WriteCommand extends Command<YatzeeGame> {
                 RowType rowType = null;
                 for (RowType candidate : RowType.values()) {
                     if (candidate.getName().equalsIgnoreCase(list.get(0))) {
-                        System.out.println("name:" + candidate.getName());
-                        System.out.println("list:" + list.get(0));
                         rowType = candidate;
                         break;
                     }

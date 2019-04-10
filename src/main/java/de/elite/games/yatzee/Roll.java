@@ -11,7 +11,7 @@ public class Roll {
     private Keeping[] keepings = new Keeping[YatzeeGame.AMOUNT_ROLLS];
 
 
-    public Roll() {
+    Roll() {
         for (int rollIndex = 0; rollIndex < YatzeeGame.AMOUNT_ROLLS; rollIndex++) {
             for (int diceIndex = 0; diceIndex < YatzeeGame.AMOUNT_DICE; diceIndex++) {
                 rolls[rollIndex][diceIndex] = new Dice();
@@ -28,8 +28,7 @@ public class Roll {
 
     }
 
-    public void roll() {
-//        currentRoll = currentRoll + 1;
+    void roll() {
         for (int i = 0; i < YatzeeGame.AMOUNT_DICE; i++) {
             rolls[currentRoll][i].roll();
         }
@@ -37,7 +36,7 @@ public class Roll {
         currentRoll = currentRoll + 1;
     }
 
-    public void setKeepings(Keeping keeping) {
+    void setKeepings(Keeping keeping) {
         keepings[currentRoll - 1] = keeping;
     }
 
@@ -48,15 +47,15 @@ public class Roll {
         }
     }
 
-    public boolean canRoll() {
+    boolean canRoll() {
         return currentRoll <= 2;
     }
 
-    public boolean canSetKeeps() {
+    boolean canSetKeeps() {
         return currentRoll > 0 && currentRoll <= 2;
     }
 
-    public boolean canWrite() {
+    boolean canWrite() {
         return currentRoll > 0;
     }
 
@@ -73,11 +72,11 @@ public class Roll {
         return Arrays.toString(getDice(0));
     }
 
-    public int getCurrentIndex() {
+    int getCurrentIndex() {
         return currentRoll;
     }
 
-    public Keeping getKeeping(int index) {
+    Keeping getKeeping(int index) {
         return keepings[index];
     }
 }

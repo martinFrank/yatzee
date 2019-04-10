@@ -11,14 +11,14 @@ class Keeping {
         this(new HashSet<>());
     }
 
-    public Keeping(Set<Integer> keepIndices) {
+    Keeping(Set<Integer> keepIndices) {
         keepings = new boolean[YatzeeGame.AMOUNT_DICE];
         for (int index : keepIndices) {
             keepings[index - 1] = true;
         }
     }
 
-    public void apply(Dice[] current, Dice[] previous) {
+    void apply(Dice[] current, Dice[] previous) {
         for (int i = 0; i < YatzeeGame.AMOUNT_DICE; i++) {
             if (keepings[i]) {
                 current[i] = previous[i];
@@ -26,7 +26,7 @@ class Keeping {
         }
     }
 
-    public boolean[] getKeepings() {
+    boolean[] getKeepings() {
         return keepings;
     }
 }

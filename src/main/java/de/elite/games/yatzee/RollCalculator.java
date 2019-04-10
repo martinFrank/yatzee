@@ -4,24 +4,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RollCalculator {
+class RollCalculator {
 
-//    private Integer[] dice;
-
-//    private static final Random RANDOM = new Random();
-
-//    public RollCalculator(Integer[] dice) {
-//        this.dice = dice;
-//    }
-
-//    public RollCalculator() {
-//        dice = new Integer[5];
-//        for (int i = 0; i < 5; i++) {
-//            dice[i] = RANDOM.nextInt(6) + 1;
-//        }
-//    }
-
-    public static int getValue(RowType type, Roll roll) {
+    static int getValue(RowType type, Roll roll) {
         switch (type) {
             case ONE:
                 return countNumbers(1, roll);
@@ -191,8 +176,4 @@ public class RollCalculator {
         return copy;
     }
 
-//    @Override
-//    public String toString() {
-//        return Arrays.stream(dice).map(d -> "[" + Integer.toString(d) + "]").collect(Collectors.joining());
-//    }
 }

@@ -5,7 +5,6 @@ import java.util.*;
 class Board {
 
     private final Map<YatzeePlayer, List<Row>> board = new HashMap<>();
-//    private final List<Row> referenceRows = createRows();
 
     Board(List<YatzeePlayer> players) {
         for (YatzeePlayer player : players) {
@@ -13,7 +12,7 @@ class Board {
         }
     }
 
-    public static List<RowType> getTopRowTypes() {
+    static List<RowType> getTopRowTypes() {
         List<RowType> topRowTypes = new ArrayList<>();
         topRowTypes.add(RowType.ONE);
         topRowTypes.add(RowType.TWO);
@@ -24,18 +23,8 @@ class Board {
         return topRowTypes;
     }
 
-//    public int getTopScore(YatzeePlayer player) {
-//        return getTopRows(board.get(player)).stream().mapToInt(r -> r.getRoll()==null?0:r.getRoll().getValue(r.getType())).sum();
-//    }
-//    public int getBottomScore(YatzeePlayer player) {
-//        return getBottomRows(board.get(player)).stream().mapToInt(r -> r.getRoll()==null?0:r.getRoll().getValue(r.getType())).sum();
-//    }
-//
-//    public int getBonusScore(YatzeePlayer player) {
-//        return getTopScore(player) >= 63 ? 35:0;
-//    }
 
-    public static List<RowType> getBottomRowTypes() {
+    static List<RowType> getBottomRowTypes() {
         List<RowType> topRowTypes = new ArrayList<>();
         topRowTypes.add(RowType.ONE_PAIR);
         topRowTypes.add(RowType.TWO_PAIR);
@@ -84,10 +73,6 @@ class Board {
         return bottomRows;
     }
 
-//    Row getRow(RowType rowType){
-//        return getRow(rowType, referenceRows);
-//    }
-
     Row getRow(RowType rowType, List<Row> rows) {
         return rows.stream().filter(r -> rowType == r.getType()).findFirst().get();
     }
@@ -126,7 +111,7 @@ class Board {
         row.setRoll(currentRoll);
     }
 
-    public boolean hasRowsLeft(YatzeePlayer currentPlayer) {
+    boolean hasRowsLeft(YatzeePlayer currentPlayer) {
         long topCount = getTopRows(currentPlayer).stream().filter(Row::isEmpty).count();
         if (topCount > 0) {
             return true;
@@ -138,7 +123,7 @@ class Board {
         return false;
     }
 
-    public List<RowType> getTopOpenRowTypes(YatzeePlayer currentPlayer) {
+    List<RowType> getTopOpenRowTypes(YatzeePlayer currentPlayer) {
         List<RowType> topRowTypes = new ArrayList<>();
         for (Row row : getTopRows(currentPlayer)) {
             if (row.isEmpty()) {
@@ -148,7 +133,7 @@ class Board {
         return topRowTypes;
     }
 
-    public List<RowType> getBottomOpenRowTypes(YatzeePlayer currentPlayer) {
+    List<RowType> getBottomOpenRowTypes(YatzeePlayer currentPlayer) {
         List<RowType> bottomRowTypes = new ArrayList<>();
         for (Row row : getBottomRows(currentPlayer)) {
             if (row.isEmpty()) {

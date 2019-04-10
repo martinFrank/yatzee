@@ -4,7 +4,7 @@ import de.frank.martin.games.boardgamelib.BasePlayer;
 
 public class YatzeePlayer extends BasePlayer<YatzeeGame> {
 
-    public YatzeePlayer(String name, int color, boolean isHuman) {
+    YatzeePlayer(String name, int color, boolean isHuman) {
         super(name, color, isHuman);
     }
 
@@ -12,6 +12,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
     public void performAiTurn() {
         YatzeeGame yatzeeGame = getBoardGame();
 
+        //TODO
 
         System.out.println("done Ai turn");
         yatzeeGame.endPlayersTurn();

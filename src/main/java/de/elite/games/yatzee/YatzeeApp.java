@@ -6,7 +6,6 @@ public class YatzeeApp
 {
     public static void main( String[] args )
     {
-
         YatzeeGame yatzeeGame = new YatzeeGame();
         yatzeeGame.setup(new YatzeeGameSetup());
         yatzeeGame.initGame();

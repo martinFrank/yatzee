@@ -30,10 +30,6 @@ public class Dice {
         isSet = true;
     }
 
-    public boolean isSet() {
-        return isSet;
-    }
-
     int getEyes() {
         if (isSet) {
             return eyes;
