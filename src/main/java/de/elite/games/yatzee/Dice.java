@@ -30,7 +30,7 @@ public class Dice {
         isSet = true;
     }
 
-    int getEyes() {
+    public int getEyes() {
         if (isSet) {
             return eyes;
         }

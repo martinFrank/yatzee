@@ -2,6 +2,7 @@ package de.elite.games.yatzee.command;
 
 import de.elite.games.cli.Command;
 import de.elite.games.cli.Response;
+import de.elite.games.yatzee.Keeping;
 import de.elite.games.yatzee.YatzeeGame;
 
 import java.util.HashSet;
@@ -25,7 +26,8 @@ public class SetKeepsCommand extends Command<YatzeeGame> {
                 }
 
             }
-            getApplication().setKeepings(keepIndices);
+            Keeping keeping = new Keeping(keepIndices);
+            getApplication().setKeepings(keeping);
             ShowCommand.print(getApplication());
             return Response.success();
         } catch (NumberFormatException e) {

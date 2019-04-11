@@ -30,7 +30,6 @@ public class WriteCommand extends Command<YatzeeGame> {
                 getApplication().write(rowType);
                 getApplication().endPlayersTurn();
                 getApplication().startPlayersTurn();
-                ShowCommand.print(getApplication());
                 return Response.success();
             } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                 return Response.fail("not clear into which row should be written: " + list);

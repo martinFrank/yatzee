@@ -1,6 +1,6 @@
 package de.elite.games.yatzee;
 
-class Row {
+public class Row {
 
     private final RowType type;
     private Roll roll;
@@ -24,7 +24,7 @@ class Row {
         this.roll = roll;
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return roll == null;
     }
 }

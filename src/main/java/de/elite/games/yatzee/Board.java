@@ -2,7 +2,7 @@ package de.elite.games.yatzee;
 
 import java.util.*;
 
-class Board {
+public class Board {
 
     private final Map<YatzeePlayer, List<Row>> board = new HashMap<>();
 
@@ -12,7 +12,7 @@ class Board {
         }
     }
 
-    static List<RowType> getTopRowTypes() {
+    public static List<RowType> getTopRowTypes() {
         List<RowType> topRowTypes = new ArrayList<>();
         topRowTypes.add(RowType.ONE);
         topRowTypes.add(RowType.TWO);
@@ -24,7 +24,7 @@ class Board {
     }
 
 
-    static List<RowType> getBottomRowTypes() {
+    public static List<RowType> getBottomRowTypes() {
         List<RowType> topRowTypes = new ArrayList<>();
         topRowTypes.add(RowType.ONE_PAIR);
         topRowTypes.add(RowType.TWO_PAIR);
@@ -36,6 +36,16 @@ class Board {
         topRowTypes.add(RowType.YATZEE);
         topRowTypes.add(RowType.CHANCE);
         return topRowTypes;
+    }
+
+    public static List<RowType> getBottomRowWithVariableCounterTypes() {
+        List<RowType> topRowTypesWithVariableCounter = new ArrayList<>();
+        topRowTypesWithVariableCounter.add(RowType.ONE_PAIR);
+        topRowTypesWithVariableCounter.add(RowType.TWO_PAIR);
+        topRowTypesWithVariableCounter.add(RowType.THREE_OF_A_KIND);
+        topRowTypesWithVariableCounter.add(RowType.FOUR_OF_A_KIND);
+        topRowTypesWithVariableCounter.add(RowType.CHANCE);
+        return topRowTypesWithVariableCounter;
     }
 
     private List<Row> createRows() {
@@ -77,7 +87,7 @@ class Board {
         return rows.stream().filter(r -> rowType == r.getType()).findFirst().get();
     }
 
-    Row getRow(RowType type, YatzeePlayer player) {
+    public Row getRow(RowType type, YatzeePlayer player) {
         List<Row> rows = board.get(player);
         return getRow(type, rows);
     }
@@ -90,7 +100,7 @@ class Board {
         return 0;
     }
 
-    int getTopSum(YatzeePlayer player) {
+    public int getTopSum(YatzeePlayer player) {
         int sum = getTopRows(player).stream().filter(r -> !r.isEmpty()).mapToInt(Row::getValue).sum();
         int bonus = getTopBonus(player);
         return sum + bonus;

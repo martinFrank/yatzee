@@ -3,7 +3,7 @@ package de.elite.games.yatzee;
 import java.util.HashSet;
 import java.util.Set;
 
-class Keeping {
+public class Keeping {
 
     private boolean[] keepings;
 
@@ -11,7 +11,7 @@ class Keeping {
         this(new HashSet<>());
     }
 
-    Keeping(Set<Integer> keepIndices) {
+    public Keeping(Set<Integer> keepIndices) {
         keepings = new boolean[YatzeeGame.AMOUNT_DICE];
         for (int index : keepIndices) {
             keepings[index - 1] = true;
@@ -28,5 +28,18 @@ class Keeping {
 
     boolean[] getKeepings() {
         return keepings;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < YatzeeGame.AMOUNT_DICE; i++) {
+            sb.append(keepings[i] ? "k" : " ");
+            if (i < YatzeeGame.AMOUNT_DICE - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

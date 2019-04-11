@@ -63,13 +63,13 @@ public class Roll {
         return rolls[index];
     }
 
-    Dice[] getDice() {
+    public Dice[] getDice() {
         return rolls[currentRoll - 1];
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(getDice(0));
+        return Arrays.toString(getDice(currentRoll - 1));
     }
 
     int getCurrentIndex() {

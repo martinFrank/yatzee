@@ -8,8 +8,6 @@ import de.frank.martin.games.boardgamelib.BaseBoardGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Set;
-
 
 public class YatzeeGame extends BaseBoardGame<YatzeePlayer> implements CommandProvider {
 
@@ -33,6 +31,8 @@ public class YatzeeGame extends BaseBoardGame<YatzeePlayer> implements CommandPr
         if (board.hasRowsLeft(getCurrentPlayer())) {
             if (!getCurrentPlayer().isHuman()) {
                 getCurrentPlayer().performAiTurn();
+            } else {
+                ShowCommand.print(this);
             }
         } else {
             LOGGER.debug("game over, no more rows to fill - start a new game instead... {} ", getCurrentPlayer().getName());
@@ -44,7 +44,6 @@ public class YatzeeGame extends BaseBoardGame<YatzeePlayer> implements CommandPr
         super.initGame();
         LOGGER.debug("init Yatzee Game");
         board = new Board(getPlayers());
-        ShowCommand.print(this);
         startPlayersTurn();
     }
 
@@ -78,10 +77,8 @@ public class YatzeeGame extends BaseBoardGame<YatzeePlayer> implements CommandPr
         return currentRoll;
     }
 
-    public void setKeepings(Set<Integer> keepIndices) {
-        Keeping keeping = new Keeping(keepIndices);
+    public void setKeepings(Keeping keeping) {
         currentRoll.setKeepings(keeping);
-
     }
 
     public void write(RowType rowType) {

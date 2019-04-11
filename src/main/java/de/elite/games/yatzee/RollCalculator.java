@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-class RollCalculator {
+public class RollCalculator {
 
-    static int getValue(RowType type, Roll roll) {
+    public static int getValue(RowType type, Roll roll) {
         switch (type) {
             case ONE:
                 return countNumbers(1, roll);
