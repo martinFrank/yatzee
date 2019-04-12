@@ -155,3 +155,26 @@ $>write 6
 ```
 In the mean time the computer player already made their rolls, so
 don't mind
+
+# Background
+this App
+ - uses the [Board-Game Lib](https://github.com/martinFrank/boardgamelib)
+ so it makes it easier to handle
+round-based Board games and easier handle Player settings
+ - uses the [CLI Lib](https://github.com/martinFrank/commandLineInterface)
+ so the whole input handling is resolved
+
+
+The AI is (yet) rule-based, but i want to make the AI smarter so it
+tries to reach certain goals (like getting the bonus for the upper
+fields)
+
+The settings for Scores right now hard coded, it's intended to **make
+settings** so you can adjust the game experience.
+ - what is a minor staright what is a major straight (I had some
+ discussions about that, is a minor start a straight of 4 in row?)
+ - how much points do you get for a FullHouse?
+ - how to handle a second yatzee?
+
+All these questions must be answered be your own, you should use a
+setting file for that... Coming soon...
