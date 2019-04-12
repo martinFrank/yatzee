@@ -19,9 +19,16 @@ public class HintPrinter {
             RowType rowType = writeAdviser.getOptimalRow();
             int value = RollCalculator.getValue(rowType, yatzeeGame.getRoll());
 
-            out.println("thoughts from the AI... \'try to set keeping for " + strategy.name());
+
+            String keeping = strategy.name();
+            if (strategy == Strategy.ROLL_FOR_IDENTICAL) {
+                int best = rollAnalyze.getHighestEyeOfIdenticals();
+                int amount = rollAnalyze.getAmountOfIdenticals();
+                keeping = "\'" + best + "\' (you have already " + amount + "of that one)";
+            }
+
+            out.println("thoughts from the AI... \'try to set keeping for " + keeping);
             out.println("thoughts from the AI... \'write into \"" + rowType.getName() + "\" for " + value + " points...\'");
-            out.println();
         }
     }
 }
