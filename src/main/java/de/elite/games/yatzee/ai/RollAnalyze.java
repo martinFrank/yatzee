@@ -105,15 +105,17 @@ public class RollAnalyze {
     }
 
     private boolean diceContain(int... eyes) {
-        boolean hasFailed = true;
         for (int eye : eyes) {
-            hasFailed = true;
+            boolean hasEye = false;
             for (Dice dice : roll.getDice()) {
                 if (dice.getEyes() == eye) {
-                    hasFailed = false;
+                    hasEye = true;
                 }
             }
+            if (!hasEye) {
+                return false;
+            }
         }
-        return hasFailed;
+        return true;
     }
 }

@@ -25,7 +25,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         RollAnalyze firstRollAnalyze = new RollAnalyze(firstRoll);
         BoardAnalyze boardAnalyze = new BoardAnalyze(yatzeeGame.getBoard(), this);
 
-        Strategy firstStrategy = StrategyAdviser.getAdvise(1, firstRollAnalyze, boardAnalyze);
+        Strategy firstStrategy = StrategyAdviser.getAdvise(firstRollAnalyze, boardAnalyze);
         LOGGER.debug("following the 1st. strategy {}", firstStrategy);
         applyStrategyAndRoll(firstStrategy, yatzeeGame, firstRollAnalyze);
 
@@ -36,7 +36,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
 
         RollAnalyze secondRollAnalyze = new RollAnalyze(secondRoll);
 
-        Strategy secondStrategy = StrategyAdviser.getAdvise(2, secondRollAnalyze, boardAnalyze);
+        Strategy secondStrategy = StrategyAdviser.getAdvise(secondRollAnalyze, boardAnalyze);
         LOGGER.debug("following the 2nd. strategy {}", secondStrategy);
         applyStrategyAndRoll(secondStrategy, yatzeeGame, secondRollAnalyze);
 

@@ -35,7 +35,6 @@ public class BoardPrinter {
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
         out.println(getTotalRowLine(board, yatzeeGame.getPlayers()));
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
-        out.println();
     }
 
     private static String getBonusRowLine(Board board, List<YatzeePlayer> players) {

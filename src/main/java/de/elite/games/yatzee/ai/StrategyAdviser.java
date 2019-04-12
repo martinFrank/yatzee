@@ -7,7 +7,7 @@ public class StrategyAdviser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StrategyAdviser.class);
 
-    public static Strategy getAdvise(int round, RollAnalyze rollAnalyze, BoardAnalyze boardAnalyze) {
+    public static Strategy getAdvise(RollAnalyze rollAnalyze, BoardAnalyze boardAnalyze) {
 
         int amountOfIdenticals = rollAnalyze.getAmountOfIdenticals();
         int highestEyeOfIdenticals = rollAnalyze.getHighestEyeOfIdenticals();

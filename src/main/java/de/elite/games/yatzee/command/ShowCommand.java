@@ -3,6 +3,7 @@ package de.elite.games.yatzee.command;
 import de.elite.games.cli.Command;
 import de.elite.games.cli.Response;
 import de.elite.games.yatzee.BoardPrinter;
+import de.elite.games.yatzee.HintPrinter;
 import de.elite.games.yatzee.RollPrinter;
 import de.elite.games.yatzee.YatzeeGame;
 
@@ -16,6 +17,7 @@ public class ShowCommand extends Command<YatzeeGame> {
 
     public static void print(YatzeeGame game) {
         BoardPrinter.print(System.out, game);
+        HintPrinter.print(System.out, game);
         RollPrinter.print(System.out, game);
     }
 

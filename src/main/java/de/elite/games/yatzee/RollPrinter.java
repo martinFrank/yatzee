@@ -1,9 +1,5 @@
 package de.elite.games.yatzee;
 
-import de.elite.games.yatzee.ai.BoardAnalyze;
-import de.elite.games.yatzee.ai.RollAnalyze;
-import de.elite.games.yatzee.ai.WriteAdviser;
-
 import java.io.PrintStream;
 
 public class RollPrinter {
@@ -27,23 +23,6 @@ public class RollPrinter {
             out.println(SEP);
             out.println(getDiceLine(3, yatzeeGame.getRoll()));
             out.println(SEP);
-            out.println();
-
-
-            if (yatzeeGame.getRoll().canWrite()) {
-                WriteAdviser writeAdviser = new WriteAdviser(
-                        yatzeeGame.getRoll(),
-                        yatzeeGame.getBoard(),
-                        yatzeeGame.getCurrentPlayer(),
-                        new BoardAnalyze(yatzeeGame.getBoard(), yatzeeGame.getCurrentPlayer()),
-                        new RollAnalyze(yatzeeGame.getRoll()));
-                RowType rowType = writeAdviser.getOptimalRow();
-                int value = RollCalculator.getValue(rowType, yatzeeGame.getRoll());
-
-                out.println("thoughts from the AI... \'write into \"" + rowType.getName() + "\" for " + value + " points...\'");
-            }
-
-            out.println();
         }
     }
 
