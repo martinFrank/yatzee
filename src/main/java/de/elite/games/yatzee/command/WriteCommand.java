@@ -27,6 +27,10 @@ public class WriteCommand extends Command<YatzeeGame> {
                 if (rowType == null) {
                     throw new IllegalArgumentException("unknown row type");
                 }
+                boolean canWriteInRow = getApplication().canWriteInRow(rowType);
+                if (!canWriteInRow) {
+                    return Response.fail("you cannot write into that row(" + rowType.getName() + "), it's already set....");
+                }
                 getApplication().write(rowType);
                 getApplication().endPlayersTurn();
                 getApplication().startPlayersTurn();

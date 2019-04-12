@@ -17,7 +17,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
     public void performAiTurn() {
         YatzeeGame yatzeeGame = getBoardGame();
 
-        //first turn
+        //first turn - roll and find best keepings
         yatzeeGame.roll();
         Roll firstRoll = yatzeeGame.getRoll();
         LOGGER.debug("first roll {}", firstRoll);
@@ -29,7 +29,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         LOGGER.debug("following the 1st. strategy {}", firstStrategy);
         applyStrategyAndRoll(firstStrategy, yatzeeGame, firstRollAnalyze);
 
-        //second turn
+        //second turn - roll again and find best keeping
         yatzeeGame.roll();
         Roll secondRoll = yatzeeGame.getRoll();
         LOGGER.debug("second roll {}", secondRoll);
@@ -41,15 +41,20 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         applyStrategyAndRoll(secondStrategy, yatzeeGame, secondRollAnalyze);
 
 
-        //third turn
+        //third turn - roll for the last time & write result
         yatzeeGame.roll();
         Roll thirdRoll = yatzeeGame.getRoll();
         LOGGER.debug("third roll {}", thirdRoll);
         RollAnalyze thirdRollAnalyze = new RollAnalyze(thirdRoll);
 
+
         WriteAdviser writeAdviser = new WriteAdviser(
                 thirdRoll, yatzeeGame.getBoard(), this, boardAnalyze, thirdRollAnalyze);
         RowType rowType = writeAdviser.getOptimalRow();
+
+        if (!yatzeeGame.getBoard().getRow(rowType, this).isEmpty()) {
+            throw new IllegalStateException("error - writing into an already filled row");
+        }
 
         LOGGER.debug("write roll {} into rowType {}", thirdRoll, rowType);
         yatzeeGame.write(rowType);
@@ -75,18 +80,28 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
                 applyStrategyRollForSix(yatzeeGame, rollAnalyze);
                 break;
             }
+            case ROLL_FOR_FIVE: {
+                applyStrategyRollForFive(yatzeeGame, rollAnalyze);
+                break;
+            }
             default: applyStrategyReRollAll();
         }
     }
 
     private void applyStrategyRollForFiveAndSix(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
-        Keeping keeping = rollAnalyze.getKeepingFor(5, 6);
-        yatzeeGame.setKeepings(keeping);
-        LOGGER.debug("keeping: {}", keeping);
+        applyStrategyRollForN(yatzeeGame, rollAnalyze, 5, 6);
     }
 
     private void applyStrategyRollForSix(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
-        Keeping keeping = rollAnalyze.getKeepingFor(6);
+        applyStrategyRollForN(yatzeeGame, rollAnalyze, 5);
+    }
+
+    private void applyStrategyRollForFive(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
+        applyStrategyRollForN(yatzeeGame, rollAnalyze, 5);
+    }
+
+    private void applyStrategyRollForN(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze, int... eyes) {
+        Keeping keeping = rollAnalyze.getKeepingFor(eyes);
         yatzeeGame.setKeepings(keeping);
         LOGGER.debug("keeping: {}", keeping);
     }

@@ -14,10 +14,10 @@ public class StrategyAdviser {
         int lowestEyeOfIdenticals = rollAnalyze.getLowestEyeOfIdenticals();
         int highestEye = rollAnalyze.getHighestEye();
 
-        LOGGER.debug("roll: {}", rollAnalyze.getRoll());
-        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, highestEyeOfIdenticals);
-        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, lowestEyeOfIdenticals);
-        LOGGER.debug("highest any    : {} ", highestEye);
+//        LOGGER.debug("roll: {}", rollAnalyze.getRoll());
+//        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, highestEyeOfIdenticals);
+//        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, lowestEyeOfIdenticals);
+//        LOGGER.debug("highest any    : {} ", highestEye);
         boolean has6 = rollAnalyze.hasSix();
         boolean has5 = rollAnalyze.hasFive();
         boolean is6Empty = boardAnalyze.isTopRowEmpty(6);

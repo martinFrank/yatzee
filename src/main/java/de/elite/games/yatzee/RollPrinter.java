@@ -1,5 +1,9 @@
 package de.elite.games.yatzee;
 
+import de.elite.games.yatzee.ai.BoardAnalyze;
+import de.elite.games.yatzee.ai.RollAnalyze;
+import de.elite.games.yatzee.ai.WriteAdviser;
+
 import java.io.PrintStream;
 
 public class RollPrinter {
@@ -9,22 +13,38 @@ public class RollPrinter {
     private static final String KEEP = "<-- you can keep these";
 
     public static void print(PrintStream out, YatzeeGame yatzeeGame) {
-        out.println(SEP);
-        out.println("|  dice #   | 1 | 2 | 3 | 4 | 5 |");
-        out.println(SEP);
-        out.println(getDiceLine(1, yatzeeGame.getRoll()));
-        out.println(SEP);
-        out.println(getKeepLine(1, yatzeeGame.getRoll()));
-        out.println(SEP);
-        out.println(getDiceLine(2, yatzeeGame.getRoll()));
-        out.println(SEP);
-        out.println(getKeepLine(2, yatzeeGame.getRoll()));
-        out.println(SEP);
-        out.println(getDiceLine(3, yatzeeGame.getRoll()));
-        out.println(SEP);
-        out.println();
-        out.println("hint: write into \"2\" for 6 points");
-        out.println();
+        if (yatzeeGame.hasRowsLeft()) {
+            out.println(SEP);
+            out.println("|  dice #   | 1 | 2 | 3 | 4 | 5 |");
+            out.println(SEP);
+            out.println(getDiceLine(1, yatzeeGame.getRoll()));
+            out.println(SEP);
+            out.println(getKeepLine(1, yatzeeGame.getRoll()));
+            out.println(SEP);
+            out.println(getDiceLine(2, yatzeeGame.getRoll()));
+            out.println(SEP);
+            out.println(getKeepLine(2, yatzeeGame.getRoll()));
+            out.println(SEP);
+            out.println(getDiceLine(3, yatzeeGame.getRoll()));
+            out.println(SEP);
+            out.println();
+
+
+            if (yatzeeGame.getRoll().canWrite()) {
+                WriteAdviser writeAdviser = new WriteAdviser(
+                        yatzeeGame.getRoll(),
+                        yatzeeGame.getBoard(),
+                        yatzeeGame.getCurrentPlayer(),
+                        new BoardAnalyze(yatzeeGame.getBoard(), yatzeeGame.getCurrentPlayer()),
+                        new RollAnalyze(yatzeeGame.getRoll()));
+                RowType rowType = writeAdviser.getOptimalRow();
+                int value = RollCalculator.getValue(rowType, yatzeeGame.getRoll());
+
+                out.println("thoughts from the AI... \'write into \"" + rowType.getName() + "\" for " + value + " points...\'");
+            }
+
+            out.println();
+        }
     }
 
     private static String getKeepLine(int currentIndex, Roll roll) {

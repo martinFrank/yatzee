@@ -21,14 +21,18 @@ public class BoardPrinter {
             out.println(getRowLine(type, board, yatzeeGame.getPlayers()));
         }
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
-        out.println(getBonusRowLine(board, yatzeeGame.getPlayers()));
         out.println(getTopSumRowLine(board, yatzeeGame.getPlayers()));
+        out.println(getBonusRowLine(board, yatzeeGame.getPlayers()));
+        out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
+        out.println(getTopTotalRowLine(board, yatzeeGame.getPlayers()));
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
         for (RowType type : Board.getBottomRowTypes()) {
             out.println(getRowLine(type, board, yatzeeGame.getPlayers()));
         }
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
         out.println(getBottomSumRowLine(board, yatzeeGame.getPlayers()));
+        out.println(getTopSumRowLine(board, yatzeeGame.getPlayers()));
+        out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
         out.println(getTotalRowLine(board, yatzeeGame.getPlayers()));
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));
         out.println();
@@ -48,6 +52,16 @@ public class BoardPrinter {
         StringBuilder sb = new StringBuilder(getRowTypeNameLine(RowType.TOP_SUM));
         for (YatzeePlayer player : players) {
             String topSum = "" + board.getTopSum(player);
+            sb.append(fitInName(topSum));
+            sb.append("|");
+        }
+        return sb.toString();
+    }
+
+    private static String getTopTotalRowLine(Board board, List<YatzeePlayer> players) {
+        StringBuilder sb = new StringBuilder(getRowTypeNameLine(RowType.TOP_TOTAL));
+        for (YatzeePlayer player : players) {
+            String topSum = "" + board.getTopTotal(player);
             sb.append(fitInName(topSum));
             sb.append("|");
         }

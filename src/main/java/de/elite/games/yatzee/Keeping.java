@@ -18,6 +18,21 @@ public class Keeping {
         }
     }
 
+    public static boolean isValidInput(Set<Integer> keepIndices) {
+        if (keepIndices == null) {
+            return false;
+        }
+        if (keepIndices.size() > 5) {
+            return false;
+        }
+        for (int index : keepIndices) {
+            if (index < 1 || index > 5) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     void apply(Dice[] current, Dice[] previous) {
         for (int i = 0; i < YatzeeGame.AMOUNT_DICE; i++) {
             if (keepings[i]) {

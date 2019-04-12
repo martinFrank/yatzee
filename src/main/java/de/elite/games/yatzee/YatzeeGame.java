@@ -88,4 +88,8 @@ public class YatzeeGame extends BaseBoardGame<YatzeePlayer> implements CommandPr
     public boolean hasRowsLeft() {
         return board.hasRowsLeft(getCurrentPlayer());
     }
+
+    public boolean canWriteInRow(RowType rowType) {
+        return board.canWriteInto(rowType, getCurrentPlayer());
+    }
 }

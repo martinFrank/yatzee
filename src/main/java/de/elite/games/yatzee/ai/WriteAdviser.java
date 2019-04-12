@@ -1,11 +1,15 @@
 package de.elite.games.yatzee.ai;
 
 import de.elite.games.yatzee.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class WriteAdviser {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WriteAdviser.class);
 
     private final Roll roll;
     private final Board board;
@@ -116,6 +120,11 @@ public class WriteAdviser {
             }
         }
 
+        //before we cancel something we write it into chance...
+        if (canSetInto(RowType.CHANCE)) {
+            return RowType.CHANCE;
+        }
+
         List<RowType> bottomCancelList = getCancelList();
         for (RowType cancelType : bottomCancelList) {
             if (board.getRow(cancelType, player).isEmpty()) {
@@ -130,8 +139,6 @@ public class WriteAdviser {
         }
 
         throw new IllegalStateException("could not find any free row to write into");
-
-//        return RowType.CHANCE;
     }
 
     private List<RowType> getCancelList() {

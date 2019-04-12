@@ -26,10 +26,14 @@ public class SetKeepsCommand extends Command<YatzeeGame> {
                 }
 
             }
-            Keeping keeping = new Keeping(keepIndices);
-            getApplication().setKeepings(keeping);
-            ShowCommand.print(getApplication());
-            return Response.success();
+            if (Keeping.isValidInput(keepIndices)) {
+                Keeping keeping = new Keeping(keepIndices);
+                getApplication().setKeepings(keeping);
+                ShowCommand.print(getApplication());
+                return Response.success();
+            } else {
+                return Response.fail("could not understand keepings: " + list);
+            }
         } catch (NumberFormatException e) {
             return Response.fail("could not understand keepings: " + list);
         }

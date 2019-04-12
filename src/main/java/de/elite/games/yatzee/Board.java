@@ -58,6 +58,7 @@ public class Board {
                 new Row(RowType.SIX),
                 new Row(RowType.TOP_SUM),
                 new Row(RowType.TOP_BONUS),
+                new Row(RowType.TOP_TOTAL),
                 new Row(RowType.ONE_PAIR),
                 new Row(RowType.TWO_PAIR),
                 new Row(RowType.THREE_OF_A_KIND),
@@ -101,6 +102,10 @@ public class Board {
     }
 
     public int getTopSum(YatzeePlayer player) {
+        return getTopRows(player).stream().filter(r -> !r.isEmpty()).mapToInt(Row::getValue).sum();
+    }
+
+    public int getTopTotal(YatzeePlayer player) {
         int sum = getTopRows(player).stream().filter(r -> !r.isEmpty()).mapToInt(Row::getValue).sum();
         int bonus = getTopBonus(player);
         return sum + bonus;
@@ -111,7 +116,7 @@ public class Board {
     }
 
     int getTotal(YatzeePlayer player) {
-        int top = getTopSum(player);
+        int top = getTopTotal(player);
         int bottom = getBottomSum(player);
         return top + bottom;
     }
@@ -153,4 +158,7 @@ public class Board {
         return bottomRowTypes;
     }
 
+    public boolean canWriteInto(RowType rowType, YatzeePlayer player) {
+        return getRow(rowType, player).isEmpty();
+    }
 }
