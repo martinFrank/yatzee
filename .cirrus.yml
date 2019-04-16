@@ -1,9 +1,7 @@
 container:
-  image: node:latest
+  image: openjdk:8-jdk
+    cpu: 4
+    memory: 12
 
-check_task:
-  node_modules_cache:
-    folder: node_modules
-    fingerprint_script: cat yarn.lock
-    populate_script: yarn install
-  test_script: yarn test
+build_task:
+  build_script: maven clean install
