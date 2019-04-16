@@ -1,5 +1,5 @@
 container:
-  image: openjdk:8-jdk
+  image: tomcat:9.0-jre8-alpine
 
 build_task:
   build_script: maven clean install
