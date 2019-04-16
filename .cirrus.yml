@@ -1,5 +1,8 @@
 container:
-  image: tomcat:9.0-jre8-alpine
+  image: node:latest
+
+setup_java_task:
+  setup_java_script: npm install java
 
 setup_maven_task:
   setup_maven_script: npm install maven
