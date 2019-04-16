@@ -1,5 +1,8 @@
 container:
   image: tomcat:9.0-jre8-alpine
 
+setup_maven_task:
+  setup_maven_script: npm install maven
+
 build_task:
   build_script: maven clean install
