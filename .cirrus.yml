@@ -1,11 +1,5 @@
 container:
-  image: node:latest
-
-setup_java_task:
-  setup_java_script: npm install java
-
-setup_maven_task:
-  setup_maven_script: npm install maven
+  image: maven:3
 
 build_task:
   build_script: maven clean install
