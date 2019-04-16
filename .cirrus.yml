@@ -1,7 +1,5 @@
 container:
   image: openjdk:8-jdk
-    cpu: 4
-    memory: 12
 
 build_task:
   build_script: maven clean install
