@@ -49,7 +49,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
 
 
         WriteAdviser writeAdviser = new WriteAdviser(
-                thirdRoll, yatzeeGame.getBoard(), this, boardAnalyze, thirdRollAnalyze);
+                thirdRoll, yatzeeGame.getBoard(), this, thirdRollAnalyze);
         RowType rowType = writeAdviser.getOptimalRow();
 
         if (!yatzeeGame.getBoard().getRow(rowType, this).isEmpty()) {

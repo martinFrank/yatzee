@@ -19,7 +19,7 @@ public class HintPrinter {
             RollAnalyze rollAnalyze = new RollAnalyze(roll);
             BoardAnalyze boardAnalyze = new BoardAnalyze(board, player);
             Strategy strategy = StrategyAdviser.getAdvise(rollAnalyze, boardAnalyze);
-            WriteAdviser writeAdviser = new WriteAdviser(roll, board, player, boardAnalyze, rollAnalyze);
+            WriteAdviser writeAdviser = new WriteAdviser(roll, board, player, rollAnalyze);
             RowType rowType = writeAdviser.getOptimalRow();
             int value = RollCalculator.getValue(rowType, yatzeeGame.getRoll());
 
