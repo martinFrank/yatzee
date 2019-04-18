@@ -48,7 +48,7 @@ public class YatzeeAppTest {
 
     @Test
     public void testFourOfAKind() {
-        assertEquals(3, RollCalculator.getValue(RowType.FOUR_OF_A_KIND, createRoll(1, 1, 1, 1, 3)));
+        assertEquals(7, RollCalculator.getValue(RowType.FOUR_OF_A_KIND, createRoll(1, 1, 1, 1, 3)));
         assertEquals(7, RollCalculator.getValue(RowType.FOUR_OF_A_KIND, createRoll(1, 1, 1, 3, 1)));
         assertEquals(0, RollCalculator.getValue(RowType.FOUR_OF_A_KIND, createRoll(1, 2, 1, 2, 1)));
     }
@@ -71,7 +71,7 @@ public class YatzeeAppTest {
 
         assertEquals(40, RollCalculator.getValue(RowType.MAJOR_STRAIGHT, createRoll(1, 2, 3, 4, 5)));
         assertEquals(40, RollCalculator.getValue(RowType.MAJOR_STRAIGHT, createRoll(2, 3, 4, 5, 6)));
-        assertEquals(40, RollCalculator.getValue(RowType.MAJOR_STRAIGHT, createRoll(1, 2, 3, 5, 6)));
+        assertEquals(0, RollCalculator.getValue(RowType.MAJOR_STRAIGHT, createRoll(1, 2, 3, 5, 6)));
 
     }
 
