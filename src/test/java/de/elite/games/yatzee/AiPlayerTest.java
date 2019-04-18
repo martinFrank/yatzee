@@ -9,12 +9,13 @@ public class AiPlayerTest {
 
     @Test
     public void testStrategy() {
-        //FIXME
-        Assert.assertTrue(true);
-        YatzeeGame yatzeeGame = new YatzeeGame();
-        yatzeeGame.setup(new TestGameSetup());
-        yatzeeGame.initGame();
-        yatzeeGame.getCommands().findCommand("show").ifPresent(c -> c.execute(Collections.emptyList()));
-        Assert.assertFalse(yatzeeGame.hasRowsLeft());
+        for (int i = 0; i < 10; i++) {
+            Assert.assertTrue(true);
+            YatzeeGame yatzeeGame = new YatzeeGame();
+            yatzeeGame.setup(new TestGameSetup());
+            yatzeeGame.initGame();
+            yatzeeGame.getCommands().findCommand("show").ifPresent(c -> c.execute(Collections.emptyList()));
+            Assert.assertFalse(yatzeeGame.hasRowsLeft());
+        }
     }
 }
