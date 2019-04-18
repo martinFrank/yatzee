@@ -15,6 +15,6 @@ public class AiPlayerTest {
         yatzeeGame.setup(new TestGameSetup());
         yatzeeGame.initGame();
         yatzeeGame.getCommands().findCommand("show").ifPresent(c -> c.execute(Collections.emptyList()));
-        Assert.assertFalse(yatzeeGame.canRoll());
+        Assert.assertFalse(yatzeeGame.hasRowsLeft());
     }
 }
