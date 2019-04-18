@@ -1,27 +1,21 @@
 package de.elite.games.yatzee.ai;
 
 import de.elite.games.yatzee.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class WriteAdviser {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WriteAdviser.class);
-
     private final Roll roll;
     private final Board board;
     private final YatzeePlayer player;
-    private final BoardAnalyze boardAnalyze;
     private final RollAnalyze rollAnalyze;
 
-    public WriteAdviser(Roll roll, Board board, YatzeePlayer player, BoardAnalyze boardAnalyze, RollAnalyze rollAnalyze) {
+    public WriteAdviser(Roll roll, Board board, YatzeePlayer player, RollAnalyze rollAnalyze) {
         this.roll = roll;
         this.board = board;
         this.player = player;
-        this.boardAnalyze = boardAnalyze;
         this.rollAnalyze = rollAnalyze;
     }
 
@@ -33,7 +27,6 @@ public class WriteAdviser {
 
         if (isYatzee()) {
             //TODO
-            //Find optimal second yatzee position
         }
 
         //bonus sichern

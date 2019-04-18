@@ -8,6 +8,10 @@ public class RollPrinter {
     private static final String HERE = "<-- you are here";
     private static final String KEEP = "<-- you can keep these";
 
+    private RollPrinter() {
+
+    }
+
     public static void print(PrintStream out, YatzeeGame yatzeeGame) {
         if (yatzeeGame.hasRowsLeft()) {
             out.println(SEP);

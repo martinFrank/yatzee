@@ -6,6 +6,10 @@ import java.util.List;
 
 public class HelpPrinter {
 
+    private HelpPrinter() {
+
+    }
+
     public static void print(PrintStream out) {
         List<String> lines = getHelpText();
         for (String line : lines) {

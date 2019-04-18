@@ -9,8 +9,6 @@
     <version>0.0.1</version>
 
   <name>yatzee</name>
-  <!-- FIXME change it to the project's website -->
-    <!--<url>http://www.example.com</url>-->
 
   <properties>
       <sonar.host.url>https://sonarcloud.io</sonar.host.url>

@@ -12,6 +12,10 @@ public class BoardPrinter {
     private static final int DESCRIPTION_COLUMN_LENGTH = 8;
     private static final int NAME_COLUMN_LENGTH = 5;
 
+    private BoardPrinter() {
+
+    }
+
     public static void print(PrintStream out, YatzeeGame yatzeeGame) {
         Board board = yatzeeGame.getBoard();
         out.println(getHorizontalSeparator(yatzeeGame.getPlayers()));

@@ -6,6 +6,10 @@ import java.util.Set;
 
 public class RollCalculator {
 
+    private RollCalculator() {
+
+    }
+
     public static int getValue(RowType type, Roll roll) {
         switch (type) {
             case ONE:
@@ -38,8 +42,8 @@ public class RollCalculator {
                 return isYatzee(roll) ? 50 : 0;
             case CHANCE:
                 return countAll(roll);
+            default: return 0;
         }
-        return 0;
     }
 
 

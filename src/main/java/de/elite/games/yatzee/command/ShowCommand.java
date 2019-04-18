@@ -7,6 +7,7 @@ import de.elite.games.yatzee.HintPrinter;
 import de.elite.games.yatzee.RollPrinter;
 import de.elite.games.yatzee.YatzeeGame;
 
+import java.io.PrintStream;
 import java.util.List;
 
 public class ShowCommand extends Command<YatzeeGame> {
@@ -16,9 +17,10 @@ public class ShowCommand extends Command<YatzeeGame> {
     }
 
     public static void print(YatzeeGame game) {
-        BoardPrinter.print(System.out, game);
-        HintPrinter.print(System.out, game);
-        RollPrinter.print(System.out, game);
+        PrintStream ps = new PrintStream(System.out);
+        BoardPrinter.print(ps, game);
+        HintPrinter.print(ps, game);
+        RollPrinter.print(ps, game);
     }
 
     @Override

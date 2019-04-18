@@ -60,7 +60,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         yatzeeGame.write(rowType);
 
 
-        System.out.println("done Ai turn");
+        LOGGER.debug("done Ai turn");
         yatzeeGame.endPlayersTurn();
         yatzeeGame.startPlayersTurn();
     }

@@ -15,7 +15,6 @@ public class RollAnalyze {
     private int highestEyeOfIdenticals;
     private int lowestEyeOfIdenticals;
     private int highestEye;
-    private boolean hasFive;
     private boolean hasSix;
 
     public RollAnalyze(Roll roll) {
@@ -47,9 +46,6 @@ public class RollAnalyze {
                 }
                 if (dice.getEyes() == 6) {
                     hasSix = true;
-                }
-                if (dice.getEyes() == 5) {
-                    hasFive = true;
                 }
             }
             if (eyeCount > amountOfIdenticals) {

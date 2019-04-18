@@ -6,6 +6,10 @@ import java.io.PrintStream;
 
 public class HintPrinter {
 
+    private HintPrinter() {
+
+    }
+
     public static void print(PrintStream out, YatzeeGame yatzeeGame) {
         if (yatzeeGame.getRoll().canWrite()) {
 

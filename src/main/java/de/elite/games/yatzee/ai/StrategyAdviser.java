@@ -1,23 +1,15 @@
 package de.elite.games.yatzee.ai;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class StrategyAdviser {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StrategyAdviser.class);
+    private StrategyAdviser() {
+
+    }
 
     public static Strategy getAdvise(RollAnalyze rollAnalyze, BoardAnalyze boardAnalyze) {
 
         int amountOfIdenticals = rollAnalyze.getAmountOfIdenticals();
         int highestEyeOfIdenticals = rollAnalyze.getHighestEyeOfIdenticals();
-        int lowestEyeOfIdenticals = rollAnalyze.getLowestEyeOfIdenticals();
-        int highestEye = rollAnalyze.getHighestEye();
-
-//        LOGGER.debug("roll: {}", rollAnalyze.getRoll());
-//        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, highestEyeOfIdenticals);
-//        LOGGER.debug("most identicals: {} x of {} ", amountOfIdenticals, lowestEyeOfIdenticals);
-//        LOGGER.debug("highest any    : {} ", highestEye);
         boolean has6 = rollAnalyze.hasSix();
         boolean has5 = rollAnalyze.hasFive();
         boolean is6Empty = boardAnalyze.isTopRowEmpty(6);

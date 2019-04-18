@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Board {
 
-    private final Map<YatzeePlayer, List<Row>> board = new HashMap<>();
+    private final Map<YatzeePlayer, List<Row>> interalBoardRepresentation = new HashMap<>();
 
     Board(List<YatzeePlayer> players) {
         for (YatzeePlayer player : players) {
-            board.put(player, createRows());
+            interalBoardRepresentation.put(player, createRows());
         }
     }
 
@@ -85,11 +85,11 @@ public class Board {
     }
 
     Row getRow(RowType rowType, List<Row> rows) {
-        return rows.stream().filter(r -> rowType == r.getType()).findFirst().get();
+        return rows.stream().filter(r -> rowType == r.getType()).findFirst().orElse(null);
     }
 
     public Row getRow(RowType type, YatzeePlayer player) {
-        List<Row> rows = board.get(player);
+        List<Row> rows = interalBoardRepresentation.get(player);
         return getRow(type, rows);
     }
 
@@ -132,10 +132,7 @@ public class Board {
             return true;
         }
         long bottomCount = getBottomRows(currentPlayer).stream().filter(Row::isEmpty).count();
-        if (bottomCount > 0) {
-            return true;
-        }
-        return false;
+        return bottomCount > 0;
     }
 
     List<RowType> getTopOpenRowTypes(YatzeePlayer currentPlayer) {
