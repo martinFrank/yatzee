@@ -29,7 +29,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
 
         Strategy firstStrategy = StrategyAdviser.getAdvise(firstRollAnalyze, boardAnalyze);
         LOGGER.debug("following the 1st. strategy {}", firstStrategy);
-        getKeepsForStrategyAndRoll(firstStrategy, yatzeeGame, firstRollAnalyze);
+        getKeepsForStrategyAndRoll(firstStrategy, firstRollAnalyze);
 
         //second turn - roll again and find best keeping
         yatzeeGame.roll();
@@ -40,7 +40,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
 
         Strategy secondStrategy = StrategyAdviser.getAdvise(secondRollAnalyze, boardAnalyze);
         LOGGER.debug("following the 2nd. strategy {}", secondStrategy);
-        Keeping keeping = getKeepsForStrategyAndRoll(secondStrategy, yatzeeGame, secondRollAnalyze);
+        Keeping keeping = getKeepsForStrategyAndRoll(secondStrategy, secondRollAnalyze);
         LOGGER.debug("keeping: {}", keeping);
         yatzeeGame.setKeepings(keeping);
 
@@ -69,30 +69,29 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         yatzeeGame.startPlayersTurn();
     }
 
-    private Keeping getKeepsForStrategyAndRoll(Strategy strategy, YatzeeGame yatzeeGame,
-                                               RollAnalyze rollAnalyze) {
+    private Keeping getKeepsForStrategyAndRoll(Strategy strategy, RollAnalyze rollAnalyze) {
         switch (strategy) {
-            case ROLL_FOR_IDENTICAL: return applyStrategyThreeOrFourOfAKind(yatzeeGame, rollAnalyze);
-            case ROLL_FOR_FIVE_AND_SIX: return applyStrategyRollForFiveAndSix(yatzeeGame, rollAnalyze);
-            case ROLL_FOR_SIX: return applyStrategyRollForSix(yatzeeGame, rollAnalyze);
-            case ROLL_FOR_FIVE: return applyStrategyRollForFive(yatzeeGame, rollAnalyze);
+            case ROLL_FOR_IDENTICAL: return applyStrategyThreeOrFourOfAKind(rollAnalyze);
+            case ROLL_FOR_FIVE_AND_SIX: return applyStrategyRollForFiveAndSix(rollAnalyze);
+            case ROLL_FOR_SIX: return applyStrategyRollForSix(rollAnalyze);
+            case ROLL_FOR_FIVE: return applyStrategyRollForFive(rollAnalyze);
             default: return applyStrategyReRollAll();
         }
     }
 
-    private Keeping applyStrategyRollForFiveAndSix(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
-        return applyStrategyRollForN(yatzeeGame, rollAnalyze, 5, 6);
+    private Keeping applyStrategyRollForFiveAndSix(RollAnalyze rollAnalyze) {
+        return applyStrategyRollForN(rollAnalyze, 5, 6);
     }
 
-    private Keeping applyStrategyRollForSix(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
-        return applyStrategyRollForN(yatzeeGame, rollAnalyze, 5);
+    private Keeping applyStrategyRollForSix(RollAnalyze rollAnalyze) {
+        return applyStrategyRollForN(rollAnalyze, 5);
     }
 
-    private Keeping applyStrategyRollForFive(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
-        return applyStrategyRollForN(yatzeeGame, rollAnalyze, 5);
+    private Keeping applyStrategyRollForFive(RollAnalyze rollAnalyze) {
+        return applyStrategyRollForN(rollAnalyze, 5);
     }
 
-    private Keeping applyStrategyRollForN(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze, int... eyes) {
+    private Keeping applyStrategyRollForN(RollAnalyze rollAnalyze, int... eyes) {
         return rollAnalyze.getKeepingFor(eyes);
     }
 
@@ -100,7 +99,7 @@ public class YatzeePlayer extends BasePlayer<YatzeeGame> {
         return new Keeping(Collections.emptySet());
     }
 
-    private Keeping applyStrategyThreeOrFourOfAKind(YatzeeGame yatzeeGame, RollAnalyze rollAnalyze) {
+    private Keeping applyStrategyThreeOrFourOfAKind(RollAnalyze rollAnalyze) {
         int eye = rollAnalyze.getHighestEyeOfIdenticals();
         return rollAnalyze.getKeepingFor(eye);
     }
