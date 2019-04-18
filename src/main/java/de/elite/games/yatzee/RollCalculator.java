@@ -25,27 +25,58 @@ public class RollCalculator {
             case SIX:
                 return countNumbers(6, roll);
             case ONE_PAIR:
-                return isOnePair(roll) ? countAll(roll) : 0;
+                return countOnePair(roll);
             case TWO_PAIR:
-                return isTwoPair(roll) ? countAll(roll) : 0;
+                return countTwoPair(roll);
             case THREE_OF_A_KIND:
-                return isThreeOfAKind(roll) ? countAll(roll) : 0;
+                return countThreeOfAKind(roll);
             case FOUR_OF_A_KIND:
-                return isFourOfAKind(roll) ? countAll(roll) : 0;
+                return countFourOfAKind(roll);
             case FULL_HOUSE:
-                return isFullHouse(roll) ? 30 : 0;
+                return countFullHouse(roll);
             case MINOR_STRAIGHT:
-                return isMinorStraight(roll) ? 35 : 0;
+                return countMinorStraight(roll);
             case MAJOR_STRAIGHT:
-                return isMajorStraight(roll) ? 40 : 0;
+                return countMajorStraight(roll);
             case YATZEE:
-                return isYatzee(roll) ? 50 : 0;
+                return countYatzee(roll);
             case CHANCE:
                 return countAll(roll);
             default: return 0;
         }
     }
 
+    private static int countOnePair(Roll roll) {
+        return isOnePair(roll) ? countAll(roll) : 0;
+    }
+
+    private static int countTwoPair(Roll roll) {
+        return isTwoPair(roll) ? countAll(roll) : 0;
+    }
+
+    private static int countThreeOfAKind(Roll roll) {
+        return isThreeOfAKind(roll) ? countAll(roll) : 0;
+    }
+
+    private static int countFourOfAKind(Roll roll) {
+        return isFourOfAKind(roll) ? countAll(roll) : 0;
+    }
+
+    private static int countFullHouse(Roll roll) {
+        return isFullHouse(roll) ? 30 : 0;
+    }
+
+    private static int countMinorStraight(Roll roll) {
+        return isMinorStraight(roll) ? 35 : 0;
+    }
+
+    private static int countMajorStraight(Roll roll) {
+        return isMajorStraight(roll) ? 40 : 0;
+    }
+
+    private static int countYatzee(Roll roll) {
+        return isYatzee(roll) ? 50 : 0;
+    }
 
     private static boolean isYatzee(Roll roll) {
         Dice[] dice = roll.getDice();
