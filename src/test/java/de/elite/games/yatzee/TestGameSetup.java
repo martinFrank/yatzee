@@ -1,6 +1,6 @@
 package de.elite.games.yatzee;
 
-import de.frank.martin.games.boardgamelib.BoardGameSetup;
+import com.github.martinfrank.boardgamelib.BoardGameSetup;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package de.elite.games.yatzee.command;
 
-import de.elite.games.cli.Command;
-import de.elite.games.cli.Response;
+import com.github.martinfrank.cli.Command;
+import com.github.martinfrank.cli.Response;
 import de.elite.games.yatzee.Keeping;
 import de.elite.games.yatzee.YatzeeGame;
 

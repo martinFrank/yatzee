@@ -1,7 +1,7 @@
 package de.elite.games.yatzee;
 
+import com.github.martinfrank.boardgamelib.BasePlayer;
 import de.elite.games.yatzee.ai.*;
-import de.frank.martin.games.boardgamelib.BasePlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

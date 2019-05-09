@@ -2,4 +2,4 @@ container:
   image: maven:3
 
 build_task:
-  build_script: mvn clean install
+  build_script: mvn clean compile test sonar:sonar

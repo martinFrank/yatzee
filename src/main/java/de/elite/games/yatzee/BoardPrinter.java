@@ -1,6 +1,6 @@
 package de.elite.games.yatzee;
 
-import de.frank.martin.games.boardgamelib.Player;
+import com.github.martinfrank.boardgamelib.Player;
 
 import java.io.PrintStream;
 import java.util.List;

@@ -1,7 +1,5 @@
 package de.elite.games.yatzee;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import java.util.Arrays;
 
 public class Roll {
@@ -20,7 +18,7 @@ public class Roll {
         }
     }
 
-    @VisibleForTesting
+    //@VisibleForTesting
     Roll(Dice[] dices) {
         super();
         rolls[0] = dices;

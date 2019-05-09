@@ -1,6 +1,5 @@
 package de.elite.games.yatzee;
 
-import com.google.common.annotations.VisibleForTesting;
 
 import java.util.Random;
 
@@ -18,7 +17,7 @@ public class Dice {
         this(new Random());
     }
 
-    @VisibleForTesting
+    //@VisibleForTesting
     Dice(int eyes) {
         this();
         this.eyes = eyes;

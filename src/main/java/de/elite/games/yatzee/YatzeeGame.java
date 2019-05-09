@@ -1,10 +1,10 @@
 package de.elite.games.yatzee;
 
-import de.elite.games.cli.CommandList;
-import de.elite.games.cli.CommandProvider;
+import com.github.martinfrank.boardgamelib.BaseBoardGame;
+import com.github.martinfrank.cli.CommandList;
+import com.github.martinfrank.cli.CommandProvider;
 import de.elite.games.yatzee.command.ShowCommand;
 import de.elite.games.yatzee.command.YatzeeCommandProvider;
-import de.frank.martin.games.boardgamelib.BaseBoardGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

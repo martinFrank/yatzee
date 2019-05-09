@@ -1,8 +1,8 @@
 package de.elite.games.yatzee.command;
 
-import de.elite.games.cli.CommandList;
-import de.elite.games.cli.CommandProvider;
-import de.elite.games.cli.DefaultCommandList;
+import com.github.martinfrank.cli.CommandList;
+import com.github.martinfrank.cli.CommandProvider;
+import com.github.martinfrank.cli.DefaultCommandList;
 import de.elite.games.yatzee.YatzeeGame;
 
 public class YatzeeCommandProvider implements CommandProvider {

@@ -1,6 +1,10 @@
 package de.elite.games.yatzee;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -90,5 +94,17 @@ public class YatzeeAppTest {
     private Roll createRoll(int a, int b, int c, int d, int e) {
         Dice[] dices = new Dice[]{new Dice(a), new Dice(b), new Dice(c), new Dice(d), new Dice(e)};
         return new Roll(dices);
+    }
+
+    @Test
+    public void mainTest() {
+        try {
+            InputStream original = System.in;
+            System.setIn(new ByteArrayInputStream("exit\n".getBytes()));
+            YatzeeApp.main(new String[]{});
+            System.setIn(original);
+        } catch (Exception e) {
+            Assert.fail();
+        }
     }
 }

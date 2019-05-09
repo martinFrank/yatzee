@@ -1,6 +1,6 @@
 package de.elite.games.yatzee;
 
-import de.elite.games.cli.CommandLineInterpreter;
+import com.github.martinfrank.cli.CommandLineInterpreter;
 
 public class YatzeeApp
 {
