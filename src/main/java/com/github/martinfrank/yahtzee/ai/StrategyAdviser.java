@@ -18,7 +18,6 @@ public class StrategyAdviser {
         Board board = yahtzeeGame.getBoard();
         YahtzeePlayer currentPlayer = yahtzeeGame.getCurrentPlayer();
 
-
         StrategyFactory factory = new StrategyFactory();
         if (!roll.hasRoll()) {
             return factory.createStartRollStrategy();
@@ -43,7 +42,6 @@ public class StrategyAdviser {
         if (amountOfIdenticals == 5) {
             return factory.createWriteToBoardStrategy();
         }
-
 
         if ((amountOfIdenticals >= 3 && boardAnalyze.isTopRowEmpty(highestEyeOfIdenticals))) {
             return factory.createStrategyRollForThreeOrMoreIdentical(highestEyeOfIdenticals, rollAnalyze);
