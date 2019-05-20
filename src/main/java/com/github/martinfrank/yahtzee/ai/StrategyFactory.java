@@ -2,6 +2,8 @@ package com.github.martinfrank.yahtzee.ai;
 
 import com.github.martinfrank.yahtzee.Keeping;
 import com.github.martinfrank.yahtzee.YahtzeeGame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,10 +17,10 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +rollAnalyze.getHighestEyeOfIdenticals());
-                Strategy.LOGGER.debug("based on roll: {}", rollAnalyze.getRoll());
-                Strategy.roll(game, rollAnalyze.getKeepingFor(highestEyeOfIdenticals));
-                Strategy.LOGGER.debug("...done with set Keeping and rolling...");
+                LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +rollAnalyze.getHighestEyeOfIdenticals());
+                LOGGER.debug("based on roll: {}", rollAnalyze.getRoll());
+                roll(game, rollAnalyze.getKeepingFor(highestEyeOfIdenticals));
+                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -35,9 +37,9 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: roll for the first time...");
-                Strategy.roll(game);
-                Strategy.LOGGER.debug("...done, rolling for the first time");
+                LOGGER.debug("apply strategy: roll for the first time...");
+                roll(game);
+                LOGGER.debug("...done, rolling for the first time");
             }
 
             @Override
@@ -54,8 +56,8 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: write to board... do NOT roll anymore");
-                Strategy.LOGGER.debug("...NOT DONE YET!!!");
+                LOGGER.debug("apply strategy: write to board... do NOT roll anymore");
+                LOGGER.debug("...NOT DONE YET!!!");
             }
 
             @Override
@@ -70,9 +72,9 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey minor straight");
-                Strategy.roll(game, new Keeping(new HashSet<>(Arrays.asList(2, 3, 4, 5))));
-                Strategy.LOGGER.debug("...done with set Keeping and rolling...");
+                LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey minor straight");
+                roll(game, new Keeping(new HashSet<>(Arrays.asList(2, 3, 4, 5))));
+                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -96,10 +98,10 @@ public class StrategyFactory {
             @Override
             public void apply(YahtzeeGame game) {
                 Keeping keeping = rollAnalyze.getKeepingFor(eye);
-                Strategy.LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +eye);
-                Strategy.LOGGER.debug("based on roll: {}", keeping);
-                Strategy.roll(game, keeping);
-                Strategy.LOGGER.debug("...done with set Keeping and rolling...");
+                LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +eye);
+                LOGGER.debug("based on roll: {}", keeping);
+                roll(game, keeping);
+                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -114,9 +116,9 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey 3/4 of minor straight");
-                Strategy.roll(game, new Keeping(new HashSet<>(Arrays.asList(eyes))));
-                Strategy.LOGGER.debug("...done with set Keeping and rolling...");
+                LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey 3/4 of minor straight");
+                roll(game, new Keeping(new HashSet<>(Arrays.asList(eyes))));
+                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -131,9 +133,9 @@ public class StrategyFactory {
 
             @Override
             public void apply(YahtzeeGame game) {
-                Strategy.LOGGER.debug("apply strategy: reRoll all...");
-                Strategy.roll(game);
-                Strategy.LOGGER.debug("...done, reRolling all");
+                LOGGER.debug("apply strategy: reRoll all...");
+                roll(game);
+                LOGGER.debug("...done, reRolling all");
             }
 
             @Override
@@ -141,5 +143,46 @@ public class StrategyFactory {
                 return "reRoll all... ";
             }
         };
+    }
+
+
+    private abstract class TemplateStrategy implements Strategy {
+        private final boolean adviseToContinue;
+        Logger LOGGER = LoggerFactory.getLogger(Strategy.class);
+
+        private TemplateStrategy(final boolean adviseToContinue) {
+            this.adviseToContinue = adviseToContinue;
+        }
+
+        @Override
+        public boolean adviseToContinueRolling() {
+            return adviseToContinue;
+        }
+
+        void roll(YahtzeeGame yahtzeeGame, Keeping keeping) {
+            LOGGER.debug("set keeping: {}", keeping);
+            yahtzeeGame.setKeepings(keeping);
+            yahtzeeGame.roll();
+        }
+
+        void roll(YahtzeeGame yahtzeeGame) {
+            yahtzeeGame.roll();
+        }
+    }
+
+    private abstract class StopStrategy extends TemplateStrategy {
+
+        private StopStrategy() {
+            super(false);
+        }
+
+    }
+
+    private abstract class ContinueStrategy extends TemplateStrategy {
+
+        private ContinueStrategy() {
+            super(true);
+        }
+
     }
 }
