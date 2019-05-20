@@ -10,6 +10,7 @@ import java.util.HashSet;
 
 public class StrategyFactory {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Strategy.class);
 
     public Strategy createStrategyRollForThreeOrMoreIdentical(int highestEyeOfIdenticals, RollAnalyze rollAnalyze) {
 
@@ -20,7 +21,7 @@ public class StrategyFactory {
                 LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +rollAnalyze.getHighestEyeOfIdenticals());
                 LOGGER.debug("based on roll: {}", rollAnalyze.getRoll());
                 roll(game, rollAnalyze.getKeepingFor(highestEyeOfIdenticals));
-                LOGGER.debug("...done with set Keeping and rolling...");
+
             }
 
             @Override
@@ -39,7 +40,6 @@ public class StrategyFactory {
             public void apply(YahtzeeGame game) {
                 LOGGER.debug("apply strategy: roll for the first time...");
                 roll(game);
-                LOGGER.debug("...done, rolling for the first time");
             }
 
             @Override
@@ -74,7 +74,6 @@ public class StrategyFactory {
             public void apply(YahtzeeGame game) {
                 LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey minor straight");
                 roll(game, new Keeping(new HashSet<>(Arrays.asList(2, 3, 4, 5))));
-                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -101,7 +100,6 @@ public class StrategyFactory {
                 LOGGER.debug("apply strategy: roll, try to get as much identicals of {} as possible", +eye);
                 LOGGER.debug("based on roll: {}", keeping);
                 roll(game, keeping);
-                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -118,7 +116,6 @@ public class StrategyFactory {
             public void apply(YahtzeeGame game) {
                 LOGGER.debug("apply strategy: roll, try to get as much different since we have alreadey 3/4 of minor straight");
                 roll(game, new Keeping(new HashSet<>(Arrays.asList(eyes))));
-                LOGGER.debug("...done with set Keeping and rolling...");
             }
 
             @Override
@@ -135,7 +132,7 @@ public class StrategyFactory {
             public void apply(YahtzeeGame game) {
                 LOGGER.debug("apply strategy: reRoll all...");
                 roll(game);
-                LOGGER.debug("...done, reRolling all");
+
             }
 
             @Override
@@ -147,8 +144,8 @@ public class StrategyFactory {
 
 
     private abstract class TemplateStrategy implements Strategy {
+
         private final boolean adviseToContinue;
-        Logger LOGGER = LoggerFactory.getLogger(Strategy.class);
 
         private TemplateStrategy(final boolean adviseToContinue) {
             this.adviseToContinue = adviseToContinue;
@@ -163,10 +160,12 @@ public class StrategyFactory {
             LOGGER.debug("set keeping: {}", keeping);
             yahtzeeGame.setKeepings(keeping);
             yahtzeeGame.roll();
+            LOGGER.debug("...done with set Keeping and rolling...");
         }
 
         void roll(YahtzeeGame yahtzeeGame) {
             yahtzeeGame.roll();
+            LOGGER.debug("...done, rolling...");
         }
     }
 
